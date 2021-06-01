@@ -1,0 +1,37 @@
+version: "3.1"
+services:
+    nginx:
+        container_name: nginx
+        build: ./nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - app_network
+        environment:
+            - API_HOST=api
+        volumes:
+            - ./nginx/templates:/etc/nginx/templates
+            - nginx_html:/usr/share/nginx/html
+            - nginx_ssl:/etc/ssl/
+    api:
+        container_name: api
+        build: ./server
+        env_file: .env
+        environment: 
+            - REDIS_HOST=redis
+        networks:
+            - app_network
+    redis:
+        container_name: redis
+        image: "redis:alpine"
+        networks:
+            - app_network
+volumes:
+    nginx_html:
+        driver: local
+    nginx_ssl:
+        driver: local
+networks:
+    app_network:
+        driver: bridge

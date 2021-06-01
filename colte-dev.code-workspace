@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": ".\\server"
+    },
+    {
+      "path": ".\\client"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true
+    },
+    "search.exclude": {
+      "**/.svelte-kit": true,
+      "**/build/_app": true
+    }
+  }
+}
