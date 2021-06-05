@@ -15,10 +15,9 @@
 	import Link from "svelte-icons/md/MdLink.svelte";
 	import Emote from "svelte-icons/md/MdSentimentVerySatisfied.svelte";
 
-	import { Author, StatsButton, LinkIcon } from "$components";
+	import { Author, StatsButton, LinkIcon, HeaderList } from "$components";
 	import { getDiscussionByNumber } from "$api";
 	import type { Discussion } from "$api";
-	import { HeaderList } from "./_components";
 	import { activePost } from "$store/post";
 	import slugify from "slugify";
 
