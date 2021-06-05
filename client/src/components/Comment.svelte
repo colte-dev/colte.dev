@@ -22,9 +22,14 @@
 			{@html comment.bodyHTML}
 		</div>
 
-		<div class="align-middle grid grid-flow-col auto-cols-max gap-x-8 px-2 pt-4">
-			<StatsButton icon={MdThumbUp} label={comment.upvoteCount} horizontal={true} />
-			<StatsButton icon={MdEmote} label={comment.reactions.totalCount} horizontal={true} />
+		<div class="align-middle grid grid-flow-col auto-cols-max gap-x-4 px-2 pt-4">
+			<StatsButton icon={MdThumbUp} label={comment.upvoteCount} horizontal={true} iconSize={4} />
+			<StatsButton
+				icon={MdEmote}
+				label={comment.reactions.totalCount}
+				horizontal={true}
+				iconSize={4}
+			/>
 		</div>
 	</div>
 </div>
