@@ -20,8 +20,6 @@
 		activePost.set(post);
 		void goto(`/p/${post.number}`, {});
 	};
-
-	// export let post: Post;
 </script>
 
 <div class="rounded flex-col bg-accent w-full">
