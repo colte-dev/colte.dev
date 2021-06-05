@@ -5,3 +5,4 @@ export { default as StatsButton } from "./StatsButton.svelte";
 export { default as Spinner } from "./Spinner.svelte";
 export { default as LinkIcon } from "./LinkIcon.svelte";
 export { default as HeaderList } from "./HeaderList.svelte";
+export { default as Comment } from "./Comment.svelte";

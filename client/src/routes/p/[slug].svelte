@@ -9,13 +9,13 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
 	import { goto } from "$app/navigation";
-	import ThumbUp from "svelte-icons/md/MdThumbUp.svelte";
-	import Comment from "svelte-icons/md/MdComment.svelte";
-	import Share from "svelte-icons/md/MdShare.svelte";
-	import Link from "svelte-icons/md/MdLink.svelte";
-	import Emote from "svelte-icons/md/MdSentimentVerySatisfied.svelte";
+	import MdThumbUp from "svelte-icons/md/MdThumbUp.svelte";
+	import MdComment from "svelte-icons/md/MdComment.svelte";
+	import MdShare from "svelte-icons/md/MdShare.svelte";
+	import MdLink from "svelte-icons/md/MdLink.svelte";
+	import MdEmote from "svelte-icons/md/MdSentimentVerySatisfied.svelte";
 
-	import { Author, StatsButton, LinkIcon, HeaderList } from "$components";
+	import { Author, StatsButton, LinkIcon, HeaderList, Comment } from "$components";
 	import { getDiscussionByNumber } from "$api";
 	import type { Discussion } from "$api";
 	import { activePost } from "$store/post";
@@ -103,14 +103,14 @@
 	<div class="flex post mx-auto">
 		<aside class={asideClass + " 2xl:pr-16 fab"}>
 			<div class="grid grid-cols-1 gap-y-8 float-right w-6">
-				<StatsButton icon={ThumbUp} label={post.upvoteCount} />
+				<StatsButton icon={MdThumbUp} label={post.upvoteCount} />
 				<StatsButton
 					on:click={() => scrollTo("comments")}
-					icon={Comment}
+					icon={MdComment}
 					label={post.comments.totalCount}
 				/>
-				<StatsButton icon={Emote} label={post.reactions.totalCount} />
-				<StatsButton icon={Share} />
+				<StatsButton icon={MdEmote} label={post.reactions.totalCount} />
+				<StatsButton icon={MdShare} />
 			</div>
 		</aside>
 
@@ -119,7 +119,15 @@
 				{@html post.bodyHTML}
 			</div>
 
-			<!-- <div id="comments" class="bg-accent w-full my-8 p-4 md:px-8" /> -->
+			<div id="comments" class="my-8">
+				<h4>Komentar</h4>
+
+				{#each post.comments.nodes as comment}
+					<div class="my-4">
+						<Comment {comment} />
+					</div>
+				{/each}
+			</div>
 		</main>
 
 		<aside class={asideClass + " lg:w-1/3 max-w-sm overflow-y-auto sticky pt-12"}>
@@ -143,7 +151,7 @@
 			<div class="border-t border-gray-500 my-8" />
 
 			<div class="my-6">
-				<LinkIcon url={post.url} icon={Link} label="Buka di GitHub" />
+				<LinkIcon url={post.url} icon={MdLink} label="Buka di GitHub" />
 			</div>
 
 			<Author
@@ -156,15 +164,15 @@
 
 	<footer class="lg:hidden fixed bottom-0 w-full h-12 bg-gray-800">
 		<div class="grid grid-flow-col h-full text-center align-middle">
-			<StatsButton icon={ThumbUp} label={post.upvoteCount} horizontal={true} />
+			<StatsButton icon={MdThumbUp} label={post.upvoteCount} horizontal={true} />
 			<StatsButton
 				on:click={() => scrollTo("comments")}
-				icon={Comment}
+				icon={MdComment}
 				label={post.comments.totalCount}
 				horizontal={true}
 			/>
-			<StatsButton icon={Emote} label={post.reactions.totalCount} horizontal={true} />
-			<StatsButton icon={Share} horizontal={true} />
+			<StatsButton icon={MdEmote} label={post.reactions.totalCount} horizontal={true} />
+			<StatsButton icon={MdShare} horizontal={true} />
 		</div>
 	</footer>
 {/if}

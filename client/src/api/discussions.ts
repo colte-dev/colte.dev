@@ -7,12 +7,21 @@ export interface Discussion {
 	upvoteCount: number;
 	answer: Answer | null;
 	author: Author;
-	comments: Comments;
-	reactions: Comments;
+	comments: Nodes<Comment>;
+	reactions: Nodes;
 	bodyHTML: string;
 	title: string;
 	createdAt: string;
 	url: string;
+}
+
+export interface Comment {
+	id: string;
+	author: Author;
+	bodyHTML: string;
+	createdAt: string;
+	reactions: Nodes;
+	upvoteCount: number;
 }
 
 export interface Answer {
@@ -26,8 +35,9 @@ export interface Author {
 	avatarUrl: string;
 }
 
-export interface Comments {
+export interface Nodes<T = undefined> {
 	totalCount: number;
+	nodes: T[];
 }
 
 export const getDiscussionByNumber = async (number: number): Promise<AxiosResponse<Discussion>> => {

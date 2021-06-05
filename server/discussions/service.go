@@ -43,14 +43,11 @@ type Discussion struct {
 		ID  string `json:"id"`
 		Url string `json:"url"`
 	} `json:"answer"`
-	Author struct {
-		Login     string `json:"login"`
-		Url       string `json:"url"`
-		AvatarUrl string `json:"avatarUrl"`
-	} `json:"author"`
+	Author   Author `json:"author"`
 	Comments struct {
-		TotalCount int `json:"totalCount"`
-	} `json:"comments"`
+		TotalCount int       `json:"totalCount"`
+		Nodes      []Comment `json:"nodes"`
+	} `graphql:"comments(last: 20)" json:"comments"`
 	Reactions struct {
 		TotalCount int `json:"totalCount"`
 	} `json:"reactions"`
@@ -58,6 +55,23 @@ type Discussion struct {
 	Title     string `json:"title"`
 	CreatedAt string `json:"createdAt"`
 	Url       string `json:"url"`
+}
+
+type Author struct {
+	Login     string `json:"login"`
+	Url       string `json:"url"`
+	AvatarUrl string `json:"avatarUrl"`
+}
+
+type Comment struct {
+	ID        string `json:"id"`
+	Author    Author `json:"author"`
+	BodyHTML  string `graphql:"bodyHTML" json:"bodyHTML"`
+	CreatedAt string `json:"createdAt"`
+	Reactions struct {
+		TotalCount int `json:"totalCount"`
+	} `json:"reactions"`
+	UpvoteCount int `json:"upvoteCount"`
 }
 
 func GetDiscussionByNumber(number int, token string) (Discussion, error) {
