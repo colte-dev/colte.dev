@@ -115,7 +115,7 @@
 		</aside>
 
 		<main class="w-full lg:w-3/5 2xl:w-1/2 mb-32">
-			<div class="bg-accent post-content">
+			<div class="bg-accent post-content pb-6">
 				{@html post.bodyHTML}
 			</div>
 
