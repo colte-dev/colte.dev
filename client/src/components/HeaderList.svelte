@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let level: number = 0;
+	export let level = 0;
 	export let target: string;
 	export let label: string;
 </script>

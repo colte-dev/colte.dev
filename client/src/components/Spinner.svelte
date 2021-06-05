@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let size: number = 16;
-	export let border: number = 4;
+	export let size = 16;
+	export let border = 4;
 
 	const classes = `h-${size} w-${size} border-${border} border-t-${border}`;
 </script>
