@@ -33,7 +33,6 @@ func CreateGQLClient(token string) *graphql.Client {
 	httpClient := http.DefaultClient
 
 	rt := withHeader(httpClient.Transport)
-	rt.Set("GraphQL-Features", "discussions_api")
 	rt.Set("Authorization", "Bearer "+token)
 	httpClient.Transport = rt
 
